@@ -8,7 +8,7 @@ Alta functionalitate gasita se refera la faptul ca orice utilizator poate sugera
 Printre functionalitati, se mai gaseste si optiunea de follow pentru orice intrebare, optiune care daca este activata, iti va trimite notificari in momentul in care se adauga un raspuns pentru intrebarea urmarita.
 O alta funcitonalitate gasita este sistemul de bagde, unde utilizatorul poate primi cate un badge in momentul in care indeplineste anumite criterii.
 Functionalitatea pe care am descoperit-o recent, este aceea ca se pot cauta job-uri din diverse locatii.
-Alta functionalitate o reprezinta pagina FAQ, inde se pot regasi raspunsuri la intrebarile cele mai frecvente legate de stackoverflow.
+Alta functionalitate o reprezinta pagina FAQ, unde se pot regasi raspunsuri la intrebarile cele mai frecvente legate de stackoverflow.
 Bara de cautare este o alta functionalitate foarte buna pe care o detine stackoverflow.
 O alta functionalitate o reprezinta sistemul de filtrare al intrebarilor (intrebarile de pe pagina principala sunt afisate in functie de setarile de filtrare alese de catre utilizator).
 Functionalitatea esentiala pe care o gasim pe StackOverFlow este sistemul de login care asigura securitatea contului fiecarui membru.
