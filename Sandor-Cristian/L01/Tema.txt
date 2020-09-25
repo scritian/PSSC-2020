@@ -1,0 +1,16 @@
+Tema1
+-Prezentare functionalitati STACKOVERFLOW-
+
+Prima functionalitate pe care o are StackOverFlow este adaugarea de intrebari.
+A doua functionalitate gasita, o reprezinta tagurile care pot fi puse fiecarei intrebare, astfel utilizatorul poate cauta intrebari cu un anumit tag.
+O a treia functionalitate pe care am gasit-o este sistemul de votare pentru intrebari (cu cat intrebarea are mai multe votari up, cu atat va fi mai vizibila in top). De asemena cel care a pus intrebarea poate alege un raspuns ca fiind cel potrivit, prin votul de tip "accepted".
+Alta functionalitate gasita se refera la faptul ca orice utilizator poate sugera editari pentru intrebarea pusa de catre un membru stackoverflow.
+Printre functionalitati, se mai gaseste si optiunea de follow pentru orice intrebare, optiune care daca este activata, iti va trimite notificari in momentul in care se adauga un raspuns pentru intrebarea urmarita.
+O alta funcitonalitate gasita este sistemul de bagde, unde utilizatorul poate primi cate un badge in momentul in care indeplineste anumite criterii.
+Functionalitatea pe care am descoperit-o recent, este aceea ca se pot cauta job-uri din diverse locatii.
+Alta functionalitate o reprezinta pagina FAQ, inde se pot regasi raspunsuri la intrebarile cele mai frecvente legate de stackoverflow.
+Bara de cautare este o alta functionalitate foarte buna pe care o detine stackoverflow.
+O alta functionalitate o reprezinta sistemul de filtrare al intrebarilor (intrebarile de pe pagina principala sunt afisate in functie de setarile de filtrare alese de catre utilizator).
+Functionalitatea esentiala pe care o gasim pe StackOverFlow este sistemul de login care asigura securitatea contului fiecarui membru.
+Posibilitatea de a vorbi prin chat, in diverse camere este o alta functionalitate gasita in cadrul stackoverflow.
+Functionalitatea de share pe diverse platforme a intrebarii este din nou utila pentru a primi raspunuri mult mai rapid.
