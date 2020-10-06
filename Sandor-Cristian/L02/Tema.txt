@@ -1,0 +1,3 @@
+Evenimente regasite pe stackoverflow: adaugare intrebare/raspuns, stergere intrebare/raspuns, votare intrebare/raspuns, urmarirea unui tag, notificarea utilizatorului la primirea unui raspuns/vot, cresterea/scaderea numarului punctelor de reputatie, cautare/aplicare job, adaugare/stergere semne de carte.
+
+Contextele regasite pe stackoverflow: context intrebare, context job, context vot, context reputatie, context notificari, context tag, context semn de carte, context intrebare.
