@@ -1,0 +1,35 @@
+Bounded context: Question context
+	Workflow: Ask question request received
+	Trigged by: Ask question request received
+	Input: Ask a new question form (question title, details, presentation of the problem)
+	Output: New question validated/accepted an posted event
+	Side effects: User notification
+
+Workflow: Ask a new question
+	Input: Ask a new question form
+	Output: New question posted or Invalid question
+	
+	//Step 1
+	Do validate new question form
+	If form is valid then
+		stop
+	//Step 2
+	Send question confirmation
+	//Step 3
+	Return New question posted event
+
+Substep: Validate new question form
+	Input: Unvalidated new question form
+	Output: Validated new question form
+	Dependencies: Question validation and text analysing via ML (Machine learning)
+		      Title validator, question body validator, tag validator
+	Text analysing via an ML
+	Validate the title of the new question: min 15 characters
+	Validate the body of the new question: min. 30 characters
+	Validate the tags of the new question: min. 1 tag, max. 5 tags
+	If the result of the ML is Question accepted
+		Return validated new question form
+	Else if the result is uncertain
+		Return propose question for manual review
+	Else
+		Return Validation Error
