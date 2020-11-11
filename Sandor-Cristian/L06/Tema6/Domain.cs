@@ -25,6 +25,12 @@ namespace Tema6
         public static Port<CheckLanguageResult.ICheckLanguageResult> CheckLanguage(string text)
             => NewPort<CheckLanguageCmd, CheckLanguageResult.ICheckLanguageResult>(new CheckLanguageCmd(text));
 
+        public static Port<SendAckToQuestionOwnerResult.ISendAckToQuestionOwnerResult> SendAckToQuestionOwner(int replyid, int questionid, string answer)
+       => NewPort<SendAckToQuestionOwnerCmd, SendAckToQuestionOwnerResult.ISendAckToQuestionOwnerResult>(new SendAckToQuestionOwnerCmd(replyid, questionid, answer));
+
+        public static Port<SendAckToReplyAuthorResult.ISendAskToReplyAuthorResult> SendAckToReplyAuthor(int replyid, int questionid, string answer)
+        => NewPort<SendAckToReplyAuthorCmd, SendAckToReplyAuthorResult.ISendAskToReplyAuthorResult>(new SendAckToReplyAuthorCmd(replyid, questionid, answer));
+
         public static Port<Unit> SendAckToOwner(object safeReply) => NewPort<Unit, Unit>(Unit.Default);
 
         public static Port<Unit> SendAckToAuthor(object problematicReply) => NewPort<Unit, Unit>(Unit.Default);

@@ -36,9 +36,9 @@ namespace Tema6.Adapters
             return TryAsync<CreateReplyResult.ICreateReplyResult>(async () =>
             {
                 if (!state.AuthorIds.Any(p => p == cmd.AuthorId))
-                    return new CreateReplyResult.ReplyInvalid("The provided AuthorId does not exist");
+                    return new CreateReplyResult.InvalidReply("The provided AuthorId does not exist");
                 if(!state.QuestionIds.Any(p=>p == cmd.QuestionId))
-                    return new CreateReplyResult.ReplyInvalid($"The provided QUestionId [{cmd.QuestionId}] does not exist");
+                    return new CreateReplyResult.InvalidReply($"The provided QUestionId [{cmd.QuestionId}] does not exist");
 
                 return new CreateReplyResult.ReplyValid(new Reply(cmd.QuestionId, cmd.Reply, cmd.AuthorId));
             });

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Tema6.Models;
-using Tema6.Inputs;
+using L06.Models;
+using L06.Inputs;
 using CSharp.Choices;
 
-namespace Tema6.Outputs
+namespace L06.Outputs
 {
     [AsChoice]
     public static partial class CreateReplyResult

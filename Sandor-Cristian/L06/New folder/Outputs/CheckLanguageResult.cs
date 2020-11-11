@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CSharp.Choices;
 
-namespace Tema6.Outputs
+namespace L06.Outputs
 {
     [AsChoice]
     public static partial class CheckLanguageResult
