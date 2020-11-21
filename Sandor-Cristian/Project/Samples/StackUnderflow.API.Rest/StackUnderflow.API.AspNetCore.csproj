@@ -13,11 +13,9 @@
     <ProjectReference Include="..\..\Primitives\Access.Primitives.EFCore\Access.Primitives.EFCore.csproj" />
     <ProjectReference Include="..\..\Primitives\Access.Primitives.IO.Extensions\Access.Primitives.IO.Extensions.csproj" />
     <ProjectReference Include="..\..\Primitives\Access.Primitives.IO\Access.Primitives.IO.csproj" />
-    <ProjectReference Include="..\StackUnderflow.Backend.Interfaces\StackUnderflow.Backend.Abstractions.csproj" />
-    <ProjectReference Include="..\StackUnderflow.Backoffice.Adapters\StackUnderflow.Adapters.csproj" />
     <ProjectReference Include="..\StackUnderflow.Core\StackUnderflow.Domain.Core.csproj" />
     <ProjectReference Include="..\StackUnderflow.EF.Models\StackUnderflow.EF.csproj" />
-    <ProjectReference Include="..\StackUnderflow.Schema\StackUnderflow.Domain.Schema.csproj" />
+    <ProjectReference Include="..\StackUnderflow.Schema\StackUnderflow.DatabaseModel.csproj" />
   </ItemGroup>
 
 

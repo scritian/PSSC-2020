@@ -31,7 +31,7 @@ namespace Access.Primitives.IO.Extensions.xUnit
             return serviceCollection.BuildServiceProvider();
         }
 
-        public async Task<A> TestExpr<T, A>(T state, Port<A> expr, params object[] paths)
+        public async Task<A> TestExpr<T, D, A>(T state, D dependencies, Port<A> expr, params object[] paths)
         {
             var idempotency = paths.OfType<Idempotency>().SingleOrDefault();
             var mockContext = MockContext.GetInstance(paths);
@@ -42,11 +42,11 @@ namespace Access.Primitives.IO.Extensions.xUnit
             switch (idempotency)
             {
                 case Idempotency.RunOnce:
-                     result = await interpreter.Interpret(expr, state);
+                     result = await interpreter.Interpret(expr, state, dependencies);
                      break;
                 case Idempotency.RunTwice:
-                    result = await interpreter.Interpret(expr, state);
-                    result = await interpreter.Interpret(expr, state);
+                    result = await interpreter.Interpret(expr, state, dependencies);
+                    result = await interpreter.Interpret(expr, state, dependencies);
                     break;
             }
             return result;

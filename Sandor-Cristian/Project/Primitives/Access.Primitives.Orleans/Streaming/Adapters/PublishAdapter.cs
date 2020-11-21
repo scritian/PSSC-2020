@@ -40,7 +40,7 @@ namespace Access.Primitives.Orleans.Streaming.Adapters
 
         public override Task PostConditions(PublishCmd cmd, PublishResult result, object state) => Task.CompletedTask;
 
-        public override async Task<PublishResult> Work(PublishCmd cmd, object state)
+        public override async Task<PublishResult> Work(PublishCmd cmd, object state, object dependencies)
         {
             var streamProvider = GetStream(cmd.Provider, cmd.Partition, cmd.Topic);
             await streamProvider.OnNextBatchAsync(cmd.Events);

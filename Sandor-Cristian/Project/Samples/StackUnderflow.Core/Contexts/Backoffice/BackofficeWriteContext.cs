@@ -10,23 +10,6 @@ using static LanguageExt.Prelude;
 
 namespace StackUnderflow.Domain.Core.Contexts
 {
-
-    public enum BackofficeWriteContextInput
-    {
-        Empty,
-        Nulls,
-    }
-
-    public class BackofficeWriteContextGen : InputGenerator<BackofficeWriteContext, BackofficeWriteContextInput>
-    {
-        public BackofficeWriteContextGen()
-        {
-            mappings.Add(BackofficeWriteContextInput.Empty, () => new BackofficeWriteContext(new List<Tenant>(), new List<TenantUser>(),  new List<User>()));
-            mappings.Add(BackofficeWriteContextInput.Nulls, () => new BackofficeWriteContext(null, null, null));
-        }
-    }
-
-
     public class BackofficeWriteContext
     {
         public ICollection<Tenant> Tenants { get; }

@@ -7,7 +7,7 @@ namespace Access.Primitives.IO
 {
     public interface IInterpreterAsync
     {
-        Task<A> Interpret<A, TState>(Port<A> ma, TState state);
+        Task<A> Interpret<A, TState, TDependencies>(Port<A> ma, TState state, TDependencies dependencies);
     }
 
     public class LiveInterpreterAsync : IInterpreterAsync
@@ -19,7 +19,7 @@ namespace Access.Primitives.IO
             _serviceProvider = serviceProvider;
         }
 
-        public async Task<A> Interpret<A, TState>(Port<A> ma, TState state)
+        public async Task<A> Interpret<A, TState, TDependencies>(Port<A> ma, TState state, TDependencies dependencies)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace Access.Primitives.IO
                         .BuildSpan($"Adapter<{opType.GenericTypeArguments[0].Name}, {opType.GenericTypeArguments[1].Name}, {state.GetType().Name}>")
                         .StartActive(true))
                     {
-                        return await ResolveInterpreter<A, TState>(ma).Interpret(ma, state, (a) => Interpret(a, state));
+                        return await ResolveInterpreter<A, TState>(ma).Interpret(ma, state, dependencies, (a) => Interpret(a, state, dependencies));
                     }
                 }
             }

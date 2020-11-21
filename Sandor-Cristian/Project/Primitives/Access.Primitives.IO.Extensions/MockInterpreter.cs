@@ -20,7 +20,7 @@ namespace Access.Primitives.IO
             _serviceProvider = serviceProvider;
         }
 
-        public async Task<A> Interpret<A, S>(Port<A> ma, S state)
+        public async Task<A> Interpret<A, S, D>(Port<A> ma, S state, D dependencies)
         {
             using (var scope = _serviceProvider.CreateScope())
             {
@@ -29,14 +29,14 @@ namespace Access.Primitives.IO
                 {
                     return ma is Return<A> r
                         ? r.Value
-                        : await ResolveInterpreter<A, S>(scope.ServiceProvider, ma).Mock(mockContext, ma, state, (a) => Interpret(a, state));
+                        : await ResolveInterpreter<A, S, D>(scope.ServiceProvider, ma).Mock(mockContext, ma, state, dependencies, (a) => Interpret(a, state, dependencies));
                 }
             }
         }
 
-        private IInterpreter<S> ResolveInterpreter<A, S>(IServiceProvider sp, Port<A> ma)
+        private IInterpreter<S, D> ResolveInterpreter<A, S, D>(IServiceProvider sp, Port<A> ma)
         {
-            return (IInterpreter<S>)sp.GetService(GetTypeMarker(ma));
+            return (IInterpreter<S, D>)sp.GetService(GetTypeMarker(ma));
         }
 
         private Type GetTypeMarker<A>(Port<A> ma) =>
