@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Backoffice\CreateQuestionOp\**" />
+    <EmbeddedResource Remove="Backoffice\CreateQuestionOp\**" />
+    <None Remove="Backoffice\CreateQuestionOp\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CSharp.Choices" Version="1.1.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Primitives\Access.Primitives.Extensions\Access.Primitives.Extensions.csproj" />
+    <ProjectReference Include="..\..\Primitives\Access.Primitives.IO\Access.Primitives.IO.csproj" />
+  </ItemGroup>
+
+</Project>

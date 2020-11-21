@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Primitives\Access.Primitives.IO\Access.Primitives.IO.csproj" />
+    <ProjectReference Include="..\StackUnderflow.Schema\StackUnderflow.Domain.Schema.csproj" />
+  </ItemGroup>
+
+</Project>
