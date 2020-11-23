@@ -45,6 +45,8 @@ namespace StackUnderflow.EF.Models
 
         protected virtual string DefaultSchema => "base";
 
+        public object QuestionsModel { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
