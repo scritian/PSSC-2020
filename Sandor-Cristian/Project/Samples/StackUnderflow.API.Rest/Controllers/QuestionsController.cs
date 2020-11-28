@@ -16,6 +16,8 @@ using LanguageExt;
 using StackUnderflow.Domain.Schema.Questions.CreateAnswerOp;
 using StackUnderflow.Domain.Core.Contexts.Questions;
 using StackUnderflow.Domain.Core.Contexts.Questions.CreateQuestionsOp;
+using StackUnderflow.EF;
+using Microsoft.EntityFrameworkCore;
 
 namespace StackUnderflow.API.Rest.Controllers
 {
@@ -24,26 +26,64 @@ namespace StackUnderflow.API.Rest.Controllers
     public class QuestionsController : ControllerBase
     {
         private readonly IInterpreterAsync _interpreter;
-        private readonly StackUnderflowContext _dbContext;
+        //private readonly StackUnderflowContext _dbContext;
+        private readonly DatabaseContext _dbContext;
 
-        public QuestionsController(IInterpreterAsync interpreter, StackUnderflowContext dbContext)
+        //public QuestionsController(IInterpreterAsync interpreter, StackUnderflowContext dbContext)
+        public QuestionsController(IInterpreterAsync interpreter, DatabaseContext dbContext)
         {
             _interpreter = interpreter;
             _dbContext = dbContext;
         }
 
+        [HttpPost("createQuestion")]
+        public async Task<IActionResult> CreateQuestion([FromBody] CreateQuestionsCmd cmd)
+        {
+            var dep = new QuestionsDependencies();
+
+            var questions = await _dbContext.Questions.ToListAsync();
+
+            var ctx = new QuestionsWriteContext(questions);
+
+            var expr = from createTenantResult in QuestionsContext.CreateQuestion(cmd)
+                       select createTenantResult;
+
+            var r = await _interpreter.Interpret(expr, ctx, dep);
+
+            await _dbContext.SaveChangesAsync();
+
+            _dbContext.Questions.Add(new DatabaseModel.Models.Question { QuestionId=cmd.QuestionId, Title = cmd.Title, Description = cmd.Description, Tags = cmd.Tags });
+            await _dbContext.SaveChangesAsync();
+            var reply = await _dbContext.Questions.Where(r => r.QuestionId == cmd.QuestionId).SingleOrDefaultAsync();
+            _dbContext.Questions.Update(reply);
+
+            return r.Match(
+                succ => (IActionResult)Ok("Succeeded"),
+                fail => BadRequest("Question could not be added")
+                );
+        }
+
+        [HttpPost("createReply")]
         public async Task<IActionResult> CreateReply([FromBody] CreateReplyCmd cmd)
         {
             var dep = new QuestionsDependencies();
-            var ctx = new QuestionsWriteContext();
+            //var ctx = new QuestionsWriteContext();
+            var replies = await _dbContext.Replies.ToListAsync();
+            var ctx = new QuestionsWriteContext(replies);
 
             var expr = from createTenantResult in QuestionsContext.CreateReply(cmd)
                        select createTenantResult;
 
             var r = await _interpreter.Interpret(expr, ctx, dep);
 
+            //_dbContext.Replies.Add(new DatabaseModel.Models.Reply { Body = cmd.Body, AuthorUserId = 1, QuestionId = cmd.QuestionId, ReplyId = 4 });
+            //var reply = await _dbContext.Replies.Where(r => r.ReplyId == 2).SingleOrDefaultAsync();
+            //reply.Body = "Text updated";
+            //_dbContext.Replies.Update(reply);
+            await _dbContext.SaveChangesAsync();
+
             return r.Match(
-                succ => (IActionResult)Ok(succ.Body),
+                succ => (IActionResult)Ok("Succeeded"),
                 fail => BadRequest("Reply could not be added")
                 );
         }

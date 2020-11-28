@@ -21,6 +21,7 @@ using OpenTracing;
 using OpenTracing.Util;
 using StackUnderflow.Backoffice.Adapters.CreateTenant;
 using StackUnderflow.EF.Models;
+using StackUnderflow.EF;
 
 namespace FakeSO.API.Rest
 {
@@ -40,7 +41,8 @@ namespace FakeSO.API.Rest
             services.AddSingleton<IExecutionContext, LiveExecutionContext>();
             services.AddTransient<IInterpreterAsync>(sp => new LiveInterpreterAsync(sp));
 
-            services.AddDbContext<StackUnderflowContext>(builder =>
+            //services.AddDbContext<StackUnderflowContext>(builder =>
+            services.AddDbContext<DatabaseContext>(builder =>
             {
                 builder.UseSqlServer(Configuration.GetConnectionString("StackUnderflow"));
             });
