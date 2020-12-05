@@ -13,6 +13,8 @@ using Access.Primitives.EFCore;
 using StackUnderflow.Domain.Schema.Backoffice.InviteTenantAdminOp;
 using StackUnderflow.Domain.Schema.Backoffice;
 using LanguageExt;
+using Orleans;
+using GrainInterfaces;
 
 namespace StackUnderflow.API.Rest.Controllers
 {
@@ -22,11 +24,13 @@ namespace StackUnderflow.API.Rest.Controllers
     {
         private readonly IInterpreterAsync _interpreter;
         private readonly StackUnderflowContext _dbContext;
+        private readonly IClusterClient _client;
 
-        public BackofficeController(IInterpreterAsync interpreter, StackUnderflowContext dbContext)
+        public BackofficeController(IInterpreterAsync interpreter, StackUnderflowContext dbContext, IClusterClient client)
         {
             _interpreter = interpreter;
             _dbContext = dbContext;
+            _client = client;
         }
 
         [HttpPost("tenant")]
@@ -35,7 +39,7 @@ namespace StackUnderflow.API.Rest.Controllers
             BackofficeWriteContext ctx = new BackofficeWriteContext(new List<Tenant>(), new List<TenantUser>(), new List<User>());
             var dependencies = new BackofficeDependencies();
             dependencies.GenerateInvitationToken = () => Guid.NewGuid().ToString();
-            dependencies.SendInvitationEmail = (InvitationLetter letter) => async ()=>new InvitationAcknowledgement(Guid.NewGuid().ToString());
+            dependencies.SendInvitationEmail = SendEmail;
 
             var expr = from createTenantResult in BackofficeDomain.CreateTenant(createTenantCmd)
                        let adminUser = createTenantResult.SafeCast<CreateTenantResult.TenantCreated>().Select(p => p.AdminUser)
@@ -50,5 +54,13 @@ namespace StackUnderflow.API.Rest.Controllers
                 notCreated => BadRequest("Tenant could not be created."),
                 invalidRequest => BadRequest("Invalid request."));
         }
+        private TryAsync<InvitationAcknowledgement> SendEmail(InvitationLetter letter)
+        => async () =>
+        {
+            var emialSender = _client.GetGrain<IEmailSender>(0);
+            await emialSender.SendEmailAsync(letter.Letter);
+            return new InvitationAcknowledgement(Guid.NewGuid().ToString());
+        };
+
     }
 }

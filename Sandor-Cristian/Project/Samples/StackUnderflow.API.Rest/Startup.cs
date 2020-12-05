@@ -22,6 +22,7 @@ using OpenTracing.Util;
 using StackUnderflow.Backoffice.Adapters.CreateTenant;
 using StackUnderflow.EF.Models;
 using StackUnderflow.EF;
+using Orleans;
 
 namespace FakeSO.API.Rest
 {
@@ -47,6 +48,8 @@ namespace FakeSO.API.Rest
                 builder.UseSqlServer(Configuration.GetConnectionString("StackUnderflow"));
             });
 
+            services.AddSingleton(sp => GetSiloClusterClient());
+
             services.AddControllers();
         }
 
@@ -66,6 +69,23 @@ namespace FakeSO.API.Rest
             {
                 endpoints.MapControllers();
             });
+        }
+        private static IClusterClient GetSiloClusterClient()
+        {
+            //ApplicationPartManagerCodeGenExtensions
+
+            var client = new ClientBuilder()
+                .UseLocalhostClustering()
+                .ConfigureApplicationParts(parts =>
+                {
+                    parts.AddApplicationPart(typeof(GrainInterfaces.IHello).Assembly)
+                    .WithReferences()
+                    ;
+                })
+                //.AddRedisStreams("RedisProvider", c => c.ConfigureRedis(options => options.ConnectionString = "localhost"))
+                .Build();
+            client.Connect().Wait();
+            return client;
         }
     }
 }
