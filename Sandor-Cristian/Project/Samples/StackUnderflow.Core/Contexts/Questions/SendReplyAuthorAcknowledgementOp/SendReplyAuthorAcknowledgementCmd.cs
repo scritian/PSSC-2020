@@ -4,9 +4,9 @@ using System.Text;
 
 namespace StackUnderflow.Domain.Schema.Questions.SendReplyAuthorAcknowledgementOp
 {
-    public class SendReplyAuthorAcknowledgementCmd
+    public class SendQuestionAuthorAcknowledgementCmd
     {
-        public SendReplyAuthorAcknowledgementCmd(Guid replyAuthorId, int questionId, int answerId)
+        public SendQuestionAuthorAcknowledgementCmd(Guid replyAuthorId, int questionId, int answerId)
         {
             ReplyAuthorId = replyAuthorId;
             QuestionId = questionId;

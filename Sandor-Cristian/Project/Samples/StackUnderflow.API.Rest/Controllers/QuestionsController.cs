@@ -46,14 +46,18 @@ namespace StackUnderflow.API.Rest.Controllers
 
             var questions = await _dbContext.Questions.ToListAsync();
 
-            var ctx = new QuestionsWriteContext(questions);
+            //var ctx = new QuestionsWriteContext(questions);
+            _dbContext.Questions.AttachRange(questions);
 
-            var expr = from createTenantResult in QuestionsContext.CreateQuestion(cmd)
-                       select createTenantResult;
+            var ctx = new QuestionsWriteContext(new EFList<Question>(_dbContext.Questions));
+
+            var expr = from createQuestionResult in QuestionsContext.CreateQuestion(cmd)
+                       //let checkLanguageCmd = new CheckLanguageCmd()
+                       from checkLanguageResult in QuestionsContext.CheckLanguage(new CheckLanguageCmd(cmd.Description))
+                       from sendAckAuthor in QuestionsContext.SendQuestionAuthorAcknowledgement(new SendQuestionAuthorAcknowledgementCmd(Guid.NewGuid(), 1, 2))
+                       select createQuestionResult;
 
             var r = await _interpreter.Interpret(expr, ctx, dep);
-
-            await _dbContext.SaveChangesAsync();
 
             _dbContext.Questions.Add(new DatabaseModel.Models.Question { QuestionId=cmd.QuestionId, Title = cmd.Title, Description = cmd.Description, Tags = cmd.Tags });
             await _dbContext.SaveChangesAsync();
@@ -79,7 +83,7 @@ namespace StackUnderflow.API.Rest.Controllers
             var expr = from createTenantResult in QuestionsContext.CreateReply(cmd)
                        //let checkLanguageCmd = new CheckLanguageCmd(cmd.Body)
                        from checkLanguageResult in QuestionsContext.CheckLanguage(new CheckLanguageCmd(cmd.Body))
-                       from sendAckAuthor in QuestionsContext.SendReplyAuthorAcknowledgement(new SendReplyAuthorAcknowledgementCmd(Guid.NewGuid(), 1, 2))
+                       from sendAckAuthor in QuestionsContext.SendQuestionAuthorAcknowledgement(new SendQuestionAuthorAcknowledgementCmd(Guid.NewGuid(), 1, 2))
                        select createTenantResult;
 
             var r = await _interpreter.Interpret(expr, ctx, dep);

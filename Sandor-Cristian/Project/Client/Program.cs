@@ -1,6 +1,7 @@
 ﻿using GrainInterfaces;
 using Orleans;
 using Orleans.Configuration;
+using Orleans.Hosting;
 using System;
 using System.Threading.Tasks;
 
@@ -46,6 +47,7 @@ namespace Client
                     options.ServiceId = "OrleansBasics";
                 })
                 //.ConfigureLogging(logging => logging.AddConsole())
+                .AddSimpleMessageStreamProvider("SMSProvider")
                 .Build();
 
             await client.Connect();

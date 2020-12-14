@@ -43,8 +43,10 @@ namespace Silo
                     options.ClusterId = "dev";
                     options.ServiceId = "OrleansBasics";
                 })
-                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences());
+                .ConfigureApplicationParts(parts => parts.AddApplicationPart(typeof(HelloGrain).Assembly).WithReferences())
                 //.ConfigureLogging(logging => logging.AddConsole());
+                .AddSimpleMessageStreamProvider("SMSProvider", options => { options.FireAndForgetDelivery = true; })
+                .AddMemoryGrainStorage("PubSubStore");
 
             var host = builder.Build();
             await host.StartAsync();

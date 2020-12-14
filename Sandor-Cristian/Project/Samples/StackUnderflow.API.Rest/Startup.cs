@@ -23,6 +23,7 @@ using StackUnderflow.Backoffice.Adapters.CreateTenant;
 using StackUnderflow.EF.Models;
 using StackUnderflow.EF;
 using Orleans;
+using Orleans.Hosting;
 
 namespace FakeSO.API.Rest
 {
@@ -79,10 +80,9 @@ namespace FakeSO.API.Rest
                 .ConfigureApplicationParts(parts =>
                 {
                     parts.AddApplicationPart(typeof(GrainInterfaces.IHello).Assembly)
-                    .WithReferences()
-                    ;
+                    .WithReferences();
                 })
-                //.AddRedisStreams("RedisProvider", c => c.ConfigureRedis(options => options.ConnectionString = "localhost"))
+                .AddSimpleMessageStreamProvider("SMSProvider", options => { options.FireAndForgetDelivery = true; })
                 .Build();
             client.Connect().Wait();
             return client;

@@ -29,7 +29,7 @@ namespace StackUnderflow.Domain.Core.Contexts.Questions
         public static Port<ISendQuestionOwnerAcknowledgementResult> SendQuestionOwnerAcknowledgement(SendQuestionOwnerAcknowledgementCmd cmd) =>
             NewPort<SendQuestionOwnerAcknowledgementCmd, ISendQuestionOwnerAcknowledgementResult>(cmd);
 
-        public static Port<ISendReplyAuthorAcknowledgementResult> SendReplyAuthorAcknowledgement(SendReplyAuthorAcknowledgementCmd cmd) =>
-           NewPort<SendReplyAuthorAcknowledgementCmd, ISendReplyAuthorAcknowledgementResult>(cmd);
+        public static Port<ISendReplyAuthorAcknowledgementResult> SendQuestionAuthorAcknowledgement(SendQuestionAuthorAcknowledgementCmd cmd) =>
+           NewPort<SendQuestionAuthorAcknowledgementCmd, ISendReplyAuthorAcknowledgementResult>(cmd);
     }
 }
