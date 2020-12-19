@@ -1,9 +1,6 @@
 ﻿using Access.Primitives.Extensions.ObjectExtensions;
 using Access.Primitives.IO;
 using StackUnderflow.Domain.Schema.Questions.CreateAnswerOp;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using static StackUnderflow.Domain.Schema.Questions.CreateAnswerOp.CreateReplyResult;
 
@@ -24,7 +21,7 @@ namespace StackUnderflow.Domain.Core.Contexts.Questions.CreateReplyOp
 
             //state.Replies.Add(new DatabaseModel.Models.Reply { AuthorUserId=55, Body="bodyyy 10", QuestionId=50, ReplyId=15});
 
-            var result =  await workflow.Match(
+            var result = await workflow.Match(
                 Succ: r => r,
                 Fail: ex => new ReplyNotCreated(ex.Message)
                 );

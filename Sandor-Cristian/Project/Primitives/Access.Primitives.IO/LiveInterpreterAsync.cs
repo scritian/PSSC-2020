@@ -1,7 +1,7 @@
-﻿using System;
+﻿using OpenTracing.Util;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using OpenTracing.Util;
 
 namespace Access.Primitives.IO
 {

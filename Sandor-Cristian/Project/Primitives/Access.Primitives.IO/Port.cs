@@ -1,5 +1,4 @@
-﻿using LanguageExt;
-using System;
+﻿using System;
 
 namespace Access.Primitives.IO
 {
@@ -25,7 +24,7 @@ namespace Access.Primitives.IO
 
         public Port<B> Bind<B>(Func<A, Port<B>> f) => new Port<O, R, B>(Cmd, r => Do(r).Bind(f));
     }
-      
+
     public class Return<A> : Port<A>
     {
         public readonly A Value;

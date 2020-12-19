@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Access.Primitives.Orleans.Streaming
+﻿namespace Access.Primitives.Orleans.Streaming
 {
-    
+
     public class StreamProviderReference
     {
         private readonly string _providerName;

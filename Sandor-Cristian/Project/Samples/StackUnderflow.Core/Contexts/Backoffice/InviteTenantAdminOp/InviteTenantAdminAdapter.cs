@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Access.Primitives.Extensions.ObjectExtensions;
 using Access.Primitives.IO;
-using StackUnderflow.Domain.Core.Contexts;
-using StackUnderflow.Domain.Schema.Backoffice.InviteTenantAdminOp;
-using static StackUnderflow.Domain.Schema.Backoffice.InviteTenantAdminOp.InviteTenantAdminResult;
 using Access.Primitives.IO.Mocking;
-using Access.Primitives.Extensions.ObjectExtensions;
+using StackUnderflow.Domain.Core.Contexts;
 using StackUnderflow.Domain.Schema.Backoffice;
+using StackUnderflow.Domain.Schema.Backoffice.InviteTenantAdminOp;
 using StackUnderflow.EF.Models;
+using System;
+using System.Threading.Tasks;
+using static StackUnderflow.Domain.Schema.Backoffice.InviteTenantAdminOp.InviteTenantAdminResult;
 
 namespace StackUnderflow.Adapters.InviteAdmin
 {
@@ -41,7 +40,7 @@ namespace StackUnderflow.Adapters.InviteAdmin
             var letter = @$"Dear {user.DisplayName}Please click on {link}";
             return new InvitationLetter(user.Email, letter, new Uri(link));
         }
-        
+
         public override Task PostConditions(InviteTenantAdminCmd cmd, IInviteTenantAdminResult result, BackofficeWriteContext state)
         {
             return Task.CompletedTask;

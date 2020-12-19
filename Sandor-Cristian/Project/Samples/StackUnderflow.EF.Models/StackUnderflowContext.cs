@@ -1,8 +1,7 @@
-﻿using System;
-using Access.Primitives.EFCore.DSL;
+﻿using Access.Primitives.EFCore.DSL;
 using Access.Primitives.IO;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+using System;
 
 namespace StackUnderflow.EF.Models
 {

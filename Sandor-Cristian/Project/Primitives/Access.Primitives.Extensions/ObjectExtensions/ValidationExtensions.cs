@@ -1,15 +1,14 @@
 ﻿
 
-using System.Linq;
 using LanguageExt.Common;
+using System.Linq;
 
 namespace Access.Primitives.Extensions.ObjectExtensions
 {
+    using LanguageExt;
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Text;
-    using LanguageExt;
 
     public static class ValidationExtensions
     {

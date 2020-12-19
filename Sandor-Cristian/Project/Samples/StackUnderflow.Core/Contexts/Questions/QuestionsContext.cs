@@ -1,18 +1,15 @@
 ﻿using Access.Primitives.IO;
-using StackUnderflow.Domain.Schema.Questions.CreateAnswerOp;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using static StackUnderflow.Domain.Schema.Questions.CreateAnswerOp.CreateReplyResult;
-using static PortExt;
-using StackUnderflow.Domain.Schema.Questions.CheckLanguageOp;
-using static StackUnderflow.Domain.Schema.Questions.CheckLanguageOp.CheckLanguageResult;
-using static StackUnderflow.Domain.Schema.Questions.SendQuestionOwnerAcknowledgementOp.SendQuestionOwnerAcknowledgementResult;
-using StackUnderflow.Domain.Schema.Questions.SendQuestionOwnerAcknowledgementOp;
-using static StackUnderflow.Domain.Schema.Questions.SendReplyAuthorAcknowledgementOp.SendReplyAuthorAcknowledgementResult;
-using StackUnderflow.Domain.Schema.Questions.SendReplyAuthorAcknowledgementOp;
-using static StackUnderflow.Domain.Core.Contexts.Questions.CreateQuestionsOp.CreateQuestionsResult;
 using StackUnderflow.Domain.Core.Contexts.Questions.CreateQuestionsOp;
+using StackUnderflow.Domain.Schema.Questions.CheckLanguageOp;
+using StackUnderflow.Domain.Schema.Questions.CreateAnswerOp;
+using StackUnderflow.Domain.Schema.Questions.SendQuestionOwnerAcknowledgementOp;
+using StackUnderflow.Domain.Schema.Questions.SendReplyAuthorAcknowledgementOp;
+using static PortExt;
+using static StackUnderflow.Domain.Core.Contexts.Questions.CreateQuestionsOp.CreateQuestionsResult;
+using static StackUnderflow.Domain.Schema.Questions.CheckLanguageOp.CheckLanguageResult;
+using static StackUnderflow.Domain.Schema.Questions.CreateAnswerOp.CreateReplyResult;
+using static StackUnderflow.Domain.Schema.Questions.SendQuestionOwnerAcknowledgementOp.SendQuestionOwnerAcknowledgementResult;
+using static StackUnderflow.Domain.Schema.Questions.SendReplyAuthorAcknowledgementOp.SendReplyAuthorAcknowledgementResult;
 
 namespace StackUnderflow.Domain.Core.Contexts.Questions
 {

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Access.Primitives.EFCore.DSL;
-using Access.Primitives.IO;
+﻿using Access.Primitives.IO;
 using Microsoft.EntityFrameworkCore;
 using StackUnderflow.EF.Models;
-using UserDbContextFactory = Access.Primitives.EFCore.DSL.DbContextDSL<StackUnderflow.EF.UserDbContext>; 
+using System;
+using UserDbContextFactory = Access.Primitives.EFCore.DSL.DbContextDSL<StackUnderflow.EF.UserDbContext>;
 
 namespace StackUnderflow.EF
 {

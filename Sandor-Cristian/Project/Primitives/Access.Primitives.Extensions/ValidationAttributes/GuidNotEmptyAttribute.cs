@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.ComponentModel.DataAnnotations;
 
 namespace EarlyPay.Primitives.ValidationAttributes
@@ -27,6 +25,6 @@ namespace EarlyPay.Primitives.ValidationAttributes
             var parsed = Guid.TryParse(value.ToString(), out Guid guid);
             return parsed && !guid.Equals(Guid.Empty);
         }
-        
+
     }
 }

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-using Access.Primitives.Extensions.Extensions;
+﻿using Access.Primitives.Extensions.Extensions;
 using Access.Primitives.IO;
 using Dapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Data;
 
 namespace Access.Primitives.EFCore.DSL
 {
@@ -38,7 +36,7 @@ namespace Access.Primitives.EFCore.DSL
                     switch (e.CurrentState)
                     {
                         case ConnectionState.Open:
-                            var dbConnection = (IDbConnection) sender;
+                            var dbConnection = (IDbConnection)sender;
                             dbConnection.Execute(rlsItems.ToSql(), rlsItems.ToParameters());
                             break;
                     }

@@ -1,26 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Access.Primitives.Extensions.ObjectExtensions;
+﻿using Access.Primitives.EFCore;
 using Access.Primitives.IO;
-using Microsoft.AspNetCore.Mvc;
-using StackUnderflow.Domain.Core;
-using StackUnderflow.Domain.Core.Contexts;
-using StackUnderflow.Domain.Schema.Backoffice.CreateTenantOp;
-using StackUnderflow.EF.Models;
-using Access.Primitives.EFCore;
-using StackUnderflow.Domain.Schema.Backoffice.InviteTenantAdminOp;
-using StackUnderflow.Domain.Schema.Backoffice;
 using LanguageExt;
-using StackUnderflow.Domain.Schema.Questions.CreateAnswerOp;
-using StackUnderflow.Domain.Core.Contexts.Questions;
-using StackUnderflow.Domain.Core.Contexts.Questions.CreateQuestionsOp;
-using StackUnderflow.EF;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using StackUnderflow.DatabaseModel.Models;
+using StackUnderflow.Domain.Core.Contexts.Questions;
+using StackUnderflow.Domain.Core.Contexts.Questions.CreateQuestionsOp;
+using StackUnderflow.Domain.Schema.Backoffice.CreateTenantOp;
+using StackUnderflow.Domain.Schema.Backoffice.InviteTenantAdminOp;
 using StackUnderflow.Domain.Schema.Questions.CheckLanguageOp;
+using StackUnderflow.Domain.Schema.Questions.CreateAnswerOp;
 using StackUnderflow.Domain.Schema.Questions.SendReplyAuthorAcknowledgementOp;
+using StackUnderflow.EF;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace StackUnderflow.API.Rest.Controllers
 {
@@ -52,14 +47,14 @@ namespace StackUnderflow.API.Rest.Controllers
             var ctx = new QuestionsWriteContext(new EFList<Question>(_dbContext.Questions));
 
             var expr = from createQuestionResult in QuestionsContext.CreateQuestion(cmd)
-                       //let checkLanguageCmd = new CheckLanguageCmd()
+                           //let checkLanguageCmd = new CheckLanguageCmd()
                        from checkLanguageResult in QuestionsContext.CheckLanguage(new CheckLanguageCmd(cmd.Description))
                        from sendAckAuthor in QuestionsContext.SendQuestionAuthorAcknowledgement(new SendQuestionAuthorAcknowledgementCmd(Guid.NewGuid(), 1, 2))
                        select createQuestionResult;
 
             var r = await _interpreter.Interpret(expr, ctx, dep);
 
-            _dbContext.Questions.Add(new DatabaseModel.Models.Question { QuestionId=cmd.QuestionId, Title = cmd.Title, Description = cmd.Description, Tags = cmd.Tags });
+            _dbContext.Questions.Add(new DatabaseModel.Models.Question { QuestionId = cmd.QuestionId, Title = cmd.Title, Description = cmd.Description, Tags = cmd.Tags });
             await _dbContext.SaveChangesAsync();
             var reply = await _dbContext.Questions.Where(r => r.QuestionId == cmd.QuestionId).SingleOrDefaultAsync();
             _dbContext.Questions.Update(reply);
@@ -81,7 +76,7 @@ namespace StackUnderflow.API.Rest.Controllers
             var ctx = new QuestionsWriteContext(new EFList<Reply>(_dbContext.Replies));
 
             var expr = from createTenantResult in QuestionsContext.CreateReply(cmd)
-                       //let checkLanguageCmd = new CheckLanguageCmd(cmd.Body)
+                           //let checkLanguageCmd = new CheckLanguageCmd(cmd.Body)
                        from checkLanguageResult in QuestionsContext.CheckLanguage(new CheckLanguageCmd(cmd.Body))
                        from sendAckAuthor in QuestionsContext.SendQuestionAuthorAcknowledgement(new SendQuestionAuthorAcknowledgementCmd(Guid.NewGuid(), 1, 2))
                        select createTenantResult;

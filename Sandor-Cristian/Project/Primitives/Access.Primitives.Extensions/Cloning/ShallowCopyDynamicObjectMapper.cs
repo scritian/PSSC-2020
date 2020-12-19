@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Aqua.Dynamic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Aqua.Dynamic;
 
 namespace Access.Primitives.Extensions.Cloning
 {

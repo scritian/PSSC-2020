@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Access.Primitives.Extensions.Extensions;
+using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Access.Primitives.Extensions.Extensions;
-using Dapper;
 
 namespace Access.Primitives.EFCore
 {

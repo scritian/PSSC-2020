@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using OpenTracing;
+﻿using OpenTracing;
 using OpenTracing.Util;
 using Orleans;
 using Orleans.Runtime;
+using System.Threading.Tasks;
 
 namespace Access.Primitives.Orleans.OpenTracing
 {

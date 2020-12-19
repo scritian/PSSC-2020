@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace StackUnderflow.Domain.Core.Contexts.Questions.CreateQuestionsOp
 {
@@ -14,7 +11,7 @@ namespace StackUnderflow.Domain.Core.Contexts.Questions.CreateQuestionsOp
         [Required]
         public string Description { get; set; }
         [Required]
-        public string Tags { get;  set; }
+        public string Tags { get; set; }
 
         public CreateQuestionsCmd() { }
         public CreateQuestionsCmd(int QuestionId, string Title, string Description, string Tags)

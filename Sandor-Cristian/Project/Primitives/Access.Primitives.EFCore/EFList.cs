@@ -1,10 +1,10 @@
 ﻿
 namespace Access.Primitives.EFCore
 {
+    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using Microsoft.EntityFrameworkCore;
 
 
     /// <summary>
@@ -23,26 +23,26 @@ namespace Access.Primitives.EFCore
         }
 
         public T this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        
+
         public int Count => dbSet.Local.Count;
-        
+
         public bool IsReadOnly => dbSet.Local.IsReadOnly;
-        
+
         public void Add(T item)
         {
             dbSet.Add(item);
         }
-        
+
         public void Clear()
         {
             dbSet.Local.Clear();
         }
-        
+
         public bool Contains(T item)
         {
             return dbSet.Local.Contains(item);
         }
-        
+
         public void CopyTo(T[] array, int arrayIndex)
         {
             dbSet.Local.CopyTo(array, arrayIndex);

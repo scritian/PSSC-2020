@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace StackUnderflow.Domain.Schema.Backoffice.InviteTenantAdminOp
 {

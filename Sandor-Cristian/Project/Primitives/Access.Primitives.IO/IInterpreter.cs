@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Access.Primitives.IO.Mocking;
+using System;
 using System.Threading.Tasks;
-using Access.Primitives.IO.Mocking;
 
 namespace Access.Primitives.IO
 {

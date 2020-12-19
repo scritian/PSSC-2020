@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Linq;
 using System.Reflection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Access.Primitives.IO.Extensions
 {

@@ -1,17 +1,14 @@
-﻿using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using Access.Primitives.Extensions.ObjectExtensions;
 using Access.Primitives.IO;
-using LanguageExt;
-using StackUnderflow.Domain.Schema.Backoffice.CreateTenantOp;
-using Access.Primitives.Extensions.ObjectExtensions;
-using Access.Primitives.IO.Attributes;
 using Access.Primitives.IO.Mocking;
+using LanguageExt;
 using StackUnderflow.Domain.Core.Contexts;
-using StackUnderflow.EF.Models;
-using static StackUnderflow.Domain.Schema.Backoffice.CreateTenantOp.CreateTenantResult;
 using StackUnderflow.Domain.Schema.Backoffice;
+using StackUnderflow.Domain.Schema.Backoffice.CreateTenantOp;
+using StackUnderflow.EF.Models;
+using System.Linq;
+using System.Threading.Tasks;
+using static StackUnderflow.Domain.Schema.Backoffice.CreateTenantOp.CreateTenantResult;
 
 namespace StackUnderflow.Backoffice.Adapters.CreateTenant
 {
@@ -37,7 +34,7 @@ namespace StackUnderflow.Backoffice.Adapters.CreateTenant
 
             return result;
         }
-       
+
         public ICreateTenantResult AddTenantIfMissing(BackofficeWriteContext state, Tenant tenant)
         {
             if (state.Tenants.Any(p => p.Name.Equals(tenant.Name)))

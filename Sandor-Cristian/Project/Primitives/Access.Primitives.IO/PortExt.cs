@@ -1,6 +1,5 @@
-﻿using LanguageExt;
+﻿using Access.Primitives.IO;
 using System;
-using Access.Primitives.IO;
 
 public static class PortExt
 {

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using LanguageExt;
+using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using LanguageExt;
-using static LanguageExt.Prelude;
 
 namespace EarlyPay.Primitives.ValidationAttributes
 {
-    public class OptionValidatorAttribute :  ValidationAttribute
+    public class OptionValidatorAttribute : ValidationAttribute
     {
         private readonly Type _validatorAttribute;
         private ValidationAttribute _instance;

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Access.Primitives.IO.Mocking;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
-using Access.Primitives.IO.Mocking;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Access.Primitives.IO.Extensions.xUnit
 {
@@ -42,8 +40,8 @@ namespace Access.Primitives.IO.Extensions.xUnit
             switch (idempotency)
             {
                 case Idempotency.RunOnce:
-                     result = await interpreter.Interpret(expr, state, dependencies);
-                     break;
+                    result = await interpreter.Interpret(expr, state, dependencies);
+                    break;
                 case Idempotency.RunTwice:
                     result = await interpreter.Interpret(expr, state, dependencies);
                     result = await interpreter.Interpret(expr, state, dependencies);

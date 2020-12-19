@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace Access.Primitives.EFCore
 {

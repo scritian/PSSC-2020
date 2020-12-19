@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace StackUnderflow.Domain.Schema.Questions.SendQuestionOwnerAcknowledgementOp
+﻿namespace StackUnderflow.Domain.Schema.Questions.SendQuestionOwnerAcknowledgementOp
 {
     public class SendQuestionOwnerAcknowledgementCmd
     {
